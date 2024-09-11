@@ -1,5 +1,7 @@
 package com.jh.car.model.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 public enum TipoCarro {
 	
 	IMPORTADO(1,"Veículo Importado"),

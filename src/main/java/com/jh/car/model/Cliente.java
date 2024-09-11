@@ -27,7 +27,7 @@ public class Cliente implements Serializable {
 	    "dt_nasc" : "05/03/2001",
 	    "email" : "teste@gmail.com",
 	    "senha" : "13062005",
-	    "cep": "02442180" }
+	    "cep": "01310200" }
 	 ************************************************************/
 
 	@Id

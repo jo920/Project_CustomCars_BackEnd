@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -27,11 +28,12 @@ public class Car implements Serializable {
 	 *  
 	 *
 	 {
+	 "img" : "null",
 	"modelo":"Mustang GT500",
 	"marca":"Ford",
 	"preco":"500000",
 	"ano":"2022",
-	"tipo" : "IMPORTADO",
+	"tipo" : 1,
 	"moedaCompra":"DOLAR"
 	}
 	 
@@ -40,7 +42,7 @@ public class Car implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // uso essa annotation para o sistema usa uma coluna autoincremental e nao precisa criar uma tabela do tipo "seq" para armazenar os IDs. 
 	private Long id;
-
+	private String img; // estou implementando essa funcionalidade
 	private String modelo;
 	private String marca;
 	private int preco;
@@ -55,6 +57,14 @@ public class Car implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 	public String getModelo() {
