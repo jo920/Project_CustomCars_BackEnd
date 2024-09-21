@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
+import com.jh.car.dto.ClienteDTO;
 import com.jh.car.model.Cliente;
 import com.jh.car.repository.ClienteRepository;
 import com.jh.car.service.exception.ObjectNotFoundException;
@@ -76,19 +77,20 @@ public class ClienteService {
 		return repo.save(client);
 
 	}
-	
-	
-	/* Estou implementando o update do cliente -- 21/07/2024
-	 * 
-	 * public Cliente update(Cliente obj) { Cliente newObj = findById(obj.getId());
-	 * updateData(newObj, obj); return repo.save(newObj); }
-	 * 
-	 * private void updateData(Cliente newObj, Cliente obj) {
-	 * newObj.setEmail(obj.getEmail()); newObj.setCpf(obj.getCpf());
-	 * 
-	 * }
-	 */
-	
+
+	//metodo para atualizar os dados do cliente
+	public Cliente update(Cliente obj) {
+		Cliente newObj = findById(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
+	}
+
+	private void updateData(Cliente newObj, Cliente obj) {
+		newObj.setName(obj.getName());
+		newObj.setEmail(obj.getEmail());
+
+	}
+
 	public void delete(Long id) {
 		findById(id);
 		repo.deleteById(id);
@@ -116,7 +118,7 @@ public class ClienteService {
 			cli.setSenha(newSenha);
 			repo.save(cli);
 			return true;
-			
+
 		} else {
 
 			return false;

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +29,6 @@ public class CarController {
 	@GetMapping("/car")
 	public List<CarDTO> findAllCar() {
 		
-		//return service.findAll();
 		List<Car> list = service.findAll();
 		List<CarDTO> listDto = list.stream().map(obj -> new CarDTO(obj)).collect(Collectors.toList());
       
@@ -46,8 +47,10 @@ public class CarController {
 	}
 
 	@DeleteMapping("/car/{id}")
-	public void Delete(@PathVariable Long id) {
-		service.delete(id);
+	@Transactional
+	public ResponseEntity delete(@PathVariable Long id) {
+		service.delete(id);	
+		return ResponseEntity.noContent().build();
 	}
 
 		

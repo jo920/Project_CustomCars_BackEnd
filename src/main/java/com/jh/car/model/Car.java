@@ -3,6 +3,8 @@ package com.jh.car.model;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.validation.constraints.DecimalMin;
+
 import com.jh.car.model.enums.Moeda;
 import com.jh.car.model.enums.TipoCarro;
 
@@ -45,6 +47,7 @@ public class Car implements Serializable {
 	private String img; // estou implementando essa funcionalidade
 	private String modelo;
 	private String marca;
+	@DecimalMin(value = "1.00")
 	private int preco;
 	private String ano;
 	private TipoCarro tipo;
