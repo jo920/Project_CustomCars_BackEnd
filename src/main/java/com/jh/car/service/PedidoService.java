@@ -35,8 +35,6 @@ public class PedidoService {
 
 	public Pedido insert(Pedido pedido) throws IOException {
 		
-				
-
 		pedido.setId(null);
 		pedido.setPrecoCar(carservice.find(pedido.getCarro().getId()).getPreco());
 		pedido.setDtPedido(new Date());

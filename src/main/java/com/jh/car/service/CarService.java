@@ -26,7 +26,7 @@ public class CarService {
 	public Car find(Long id) {
 		Optional<Car> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id: " + id + ", Tipo: " + Car.class.getName()));
+				"Carro não encontrado! Id: " + id + ", Tipo: " + Car.class.getName()));
 	}
 
 	public Car insert(Car carro) {

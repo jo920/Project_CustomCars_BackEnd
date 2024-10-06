@@ -21,27 +21,25 @@ public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/*****************
-	 * TESTE XML DO CLIENTE********************* { 
-	    "name": "JOAO HENRIQUE",
-	    "cpf" : "44863458967",
-	    "dt_nasc" : "05/03/2001",
-	    "email" : "teste@gmail.com",
-	    "senha" : "13062005",
-	    "cep": "01310200" }
+	 * TESTE XML DO CLIENTE********************* { "name": "JOAO HENRIQUE", "cpf" :
+	 * "44863458967", "dt_nasc" : "05/03/2001", "email" : "teste@gmail.com", "login"
+	 * : "123", "senha" : "13062005", "cep": "01310200" }
 	 ************************************************************/
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // uso essa annotation para o sistema usa uma coluna autoincremental e nao precisa criar uma tabela do tipo "seq" para armazenar os IDs. 
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // uso essa annotation para o sistema usa uma coluna autoincremental e nao precisa criar uma tabela do tipo "seq" para armazenar os IDs.
 	private Long id;
 
 	private String name;
 
-	
 	private String cpf;
 
 	private String dt_nasc;
 
 	private String email;
+
+	private String login;
+
 	private String senha;
 
 	private String cep;
@@ -50,10 +48,6 @@ public class Cliente implements Serializable {
 	private String bairro;
 	private String localidade;
 	private String uf;
-
-
-
-	
 
 	public Long getId() {
 		return id;
@@ -142,15 +136,27 @@ public class Cliente implements Serializable {
 	public void setUf(String uf) {
 		this.uf = uf;
 	}
-	
-	
 
 	public String getSenha() {
 		return senha;
 	}
 
 	public void setSenha(String senha) {
+
 		this.senha = senha;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -164,5 +170,4 @@ public class Cliente implements Serializable {
 		Cliente other = (Cliente) obj;
 		return Objects.equals(id, other.id);
 	}
-
 }

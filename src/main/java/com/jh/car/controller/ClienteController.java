@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jh.car.dto.ClienteDTO;
+import com.jh.car.dto.ForgotPasswordDTO;
 import com.jh.car.model.Cliente;
 import com.jh.car.service.ClienteService;
 
@@ -44,9 +45,9 @@ public class ClienteController {
 
 	@PostMapping("/cliente")
 	public ResponseEntity insert(@RequestBody Cliente cliente) throws Exception {
-		 service.insert(cliente);
-		 
-		 return ResponseEntity.ok(cliente);	 
+		service.insert(cliente);
+
+		return ResponseEntity.ok(cliente);
 	}
 
 	@PutMapping("/cliente")
@@ -63,35 +64,4 @@ public class ClienteController {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
-
-	@GetMapping("/login/{cpf}/{senha}")
-	public ResponseEntity<String> Login(@PathVariable String cpf, @PathVariable String senha) {
-
-		if (service.Login(cpf, senha)) {
-
-			return new ResponseEntity<String>("Login Efetuado com Sucesso!", HttpStatus.OK);
-		} else {
-
-			return new ResponseEntity<String>("Falha na identificação. Verifique o usuário e senha digitado.",
-					HttpStatus.BAD_REQUEST);
-		}
-
-	}
-
-	@PutMapping("/alterasenha/{cpf}/{newSenha}")
-	public ResponseEntity<String> ForgotSenha(@PathVariable String cpf, @PathVariable String newSenha) {
-
-		if (service.ForgotPassword(cpf, newSenha)) {
-
-			return new ResponseEntity<String>(
-					"Senha alterada com sucesso. Voce será direcionado para a página de login.", HttpStatus.OK);
-		} else {
-
-			return new ResponseEntity<String>(
-					"Usuário nao encontrado, verifique se as informações foram digitadas corretamente",
-					HttpStatus.NOT_FOUND);
-		}
-
-	}
-
 }
