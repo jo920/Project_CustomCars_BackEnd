@@ -33,11 +33,17 @@ public Pedido findbyId(@PathVariable Long id) {
 	
 }
 
+@GetMapping("/pedidocliente")
+public List<Pedido>listaPedido (){
+	return service.listaPedidoCliente();
+}
+
 
 @PostMapping("/pedido")
 public Pedido insert(@RequestBody Pedido pedido) throws IOException {
 	return service.insert(pedido);
 }
+
 
 
 }

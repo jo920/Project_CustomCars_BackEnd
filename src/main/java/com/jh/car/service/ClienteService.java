@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +43,17 @@ public class ClienteService {
 		Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Cliente não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
+	}
+	
+	
+	public Cliente dadospessoais(){
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();  
+		String clientelogado = auth.getName(); 
+		
+		 Cliente cliente = repo.findByLogin(clientelogado); 
+		
+		return cliente;	 // verifico o usuário logado e retorno os dados pessoais
 	}
 
 	public Cliente insert(Cliente client) throws Exception {

@@ -40,6 +40,11 @@ public class ClienteController {
 	public Cliente findById(@PathVariable Long id) {
 		return service.findById(id);
 	}
+	
+	@GetMapping("/dadospessoais")
+	public Cliente dadospessoais() {
+		return service.dadospessoais();
+	}
 
 	@PostMapping("/cliente")
 	public ResponseEntity insert(@RequestBody Cliente cliente) throws Exception {
