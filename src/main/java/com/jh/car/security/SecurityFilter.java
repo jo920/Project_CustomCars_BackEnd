@@ -25,8 +25,12 @@ public class SecurityFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-
-		System.out.print("CHAMANDO");
+		
+		HttpServletResponse httpResponse = (HttpServletResponse) response;
+		
+		httpResponse.setHeader("Access-Control-Allow-Origin", "*");
+		httpResponse.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+		httpResponse.setHeader("Access-Control-Allow-Headers", "Content-Type");
 		
 		var tokenJWT = recuperarToken(request);
 
@@ -35,9 +39,8 @@ public class SecurityFilter extends OncePerRequestFilter {
 			var usuario = repo.findByLogin(subject); // verifico se o usuario existe no banco
 			var authentication = new UsernamePasswordAuthenticationToken(usuario,null,usuario.getAuthorities()); // cria o DTO do Spring com base nas informações buscadas 
 			
-			SecurityContextHolder.getContext().setAuthentication(authentication); // realizado a autenticação 
 			
-			System.out.print("LOGADO!!!");
+			SecurityContextHolder.getContext().setAuthentication(authentication); // realizado a autenticação 
 		
 		}
 
